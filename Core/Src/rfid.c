@@ -152,7 +152,8 @@ void Buzzer(int Time, int Loop)
 	}
 }
 
-void Mocua(){
+void Mocua()
+{
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
 	HAL_Delay(10000);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
