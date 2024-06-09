@@ -48,35 +48,27 @@ int QUET_THE(uint8_t DATA_RIGHT[3][4], uint8_t UID[4])
 
 void QUET_THE2(uint8_t DATA_RIGHT[3][4], uint8_t UID[4]) // THEM THE
 {
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if (DATA_RIGHT[i][j] == DATATEST[j])
-			{
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			if (DATA_RIGHT[i][j] == DATATEST[j]) {
 				CHECK = CHECK * 1;
 			}
-			else
-			{
+			else {
 				CHECK = 0;
 			}
 		}
-		if (CHECK == 1)
-		{
-			for (int m = 0; m < 4; m++)
-			{
+		if (CHECK == 1) {
+			for (int m = 0; m < 4; m++) {
 				DATA_RIGHT[i][m] = UID[m];
 			}
 			ok = 1;
 			break;
 		}
-		else if (CHECK == 0)
-		{
+		else if (CHECK == 0) {
 			CHECK = 1;
 		}
 	}
-	if (ok == 0)
-	{
+	if (ok == 0) {
 		lcd_clear_display();
 		HAL_Delay(10);
 		lcd_goto_XY(1, 0);
@@ -87,35 +79,27 @@ void QUET_THE2(uint8_t DATA_RIGHT[3][4], uint8_t UID[4]) // THEM THE
 
 void QUET_THE3(uint8_t DATA_RIGHT[3][4], uint8_t UID[4]) // XOA THE
 {
-	for (int i = 1; i < 3; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if (UID[j] == DATA_RIGHT[i][j])
-			{
+	for (int i = 1; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			if (UID[j] == DATA_RIGHT[i][j]) {
 				CHECK = CHECK * 1;
 			}
-			else
-			{
+			else {
 				CHECK = 0;
 			}
 		}
-		if (CHECK == 1)
-		{
-			for (int m = 0; m < 4; m++)
-			{
+		if (CHECK == 1) {
+			for (int m = 0; m < 4; m++) {
 				DATA_RIGHT[i][m] = 0x00;
 			}
 			ok = 1;
 			break;
 		}
-		else if (CHECK == 0)
-		{
+		else if (CHECK == 0) {
 			CHECK = 1;
 		}
 	}
-	if (ok == 0)
-	{
+	if (ok == 0) {
 		lcd_clear_display();
 		HAL_Delay(10);
 		lcd_goto_XY(1, 0);
@@ -126,14 +110,11 @@ void QUET_THE3(uint8_t DATA_RIGHT[3][4], uint8_t UID[4]) // XOA THE
 
 int QUET_THE4(uint8_t DATA_RIGHT[3][4], uint8_t UID[4])
 {
-	for (int i = 0; i < 4; i++)
-	{
-		if (UID[i] == DATA_RIGHT[0][i])
-		{
+	for (int i = 0; i < 4; i++) {
+		if (UID[i] == DATA_RIGHT[0][i]) {
 			CHECK = CHECK * 1;
 		}
-		else
-		{
+		else {
 			CHECK = 0;
 		}
 	}
@@ -143,8 +124,7 @@ int QUET_THE4(uint8_t DATA_RIGHT[3][4], uint8_t UID[4])
 void Buzzer(int Time, int Loop)
 {
 	uint8_t i;
-	for (i = 0; i < Loop; i++)
-	{
+	for (i = 0; i < Loop; i++) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
 		HAL_Delay(Time);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
@@ -166,8 +146,7 @@ void Kiemtrarfid()
 		if (MFRC522_ReadCardSerial(&UID)) // Read ID
 		{
 			tt_1 = QUET_THE(DATA_RIGHT, UID);
-			if (tt_1 == 1)
-			{
+			if (tt_1 == 1) {
 				lcd_clear_display();
 				HAL_Delay(10);
 				lcd_goto_XY(1, 3);
@@ -177,8 +156,7 @@ void Kiemtrarfid()
 				Buzzer(70, 3);
 				Mocua();
 			}
-			else
-			{
+			else {
 				lcd_clear_display();
 				HAL_Delay(10);
 				lcd_goto_XY(1, 0);
@@ -198,12 +176,10 @@ void Checkadmin()
 		if (MFRC522_ReadCardSerial(&UID)) // Read ID
 		{
 			tt_1 = QUET_THE4(DATA_RIGHT, UID);
-			if (tt_1 == 1)
-			{
+			if (tt_1 == 1) {
 				ok = 1;
 			}
-			else
-			{
+			else {
 				lcd_clear_display();
 				HAL_Delay(10);
 				lcd_goto_XY(1, 0);

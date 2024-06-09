@@ -103,124 +103,96 @@ int main(void)
     while (1)
     {
         gtmenu = HAL_GPIO_ReadPin(GPIOA, MENU_Pin);
-        if (gtmenu == 0)
-        {
-            while (!gtmenu == 0)
-                ;
+        if (gtmenu == 0) {
+            while (!gtmenu == 0);
             demtong = 1;
         }
-        if (demtong == 0)
-        {
+        if (demtong == 0) {
             Kiemtrarfid();
             manhinhchinh();
         }
-        if (demtong == 1)
-        {
-            if (menupage == 0)
-            {
+        if (demtong == 1) {
+            if (menupage == 0) {
                 menu_tong();
                 gtlen = HAL_GPIO_ReadPin(GPIOA, LEN_Pin);
                 gtxuong = HAL_GPIO_ReadPin(GPIOA, XUONG_Pin);
                 gtmenu = HAL_GPIO_ReadPin(GPIOA, MENU_Pin);
-                if (gtlen == 0)
-                {
-                    if (demmenu == 0)
-                    {
+                if (gtlen == 0) {
+                    if (demmenu == 0) {
                         demmenu = 1;
                     }
-                    else if (demmenu == 1)
-                    {
+                    else if (demmenu == 1) {
                         demmenu = 0;
                     }
                     menu_tong();
                     HAL_Delay(200);
                 }
-                if (gtxuong == 0)
-                {
-                    if (demmenu == 0)
-                    {
+                if (gtxuong == 0) {
+                    if (demmenu == 0) {
                         demmenu = 1;
                     }
-                    else if (demmenu == 1)
-                    {
+                    else if (demmenu == 1) {
                         demmenu = 0;
                     }
                     menu_tong();
                     HAL_Delay(200);
                 }
-                if (gtmenu == 0)
-                {
+                if (gtmenu == 0) {
                     HAL_Delay(50);
-                    if (gtmenu == 0)
-                    {
+                    if (gtmenu == 0) {
                         chon_tong();
                     }
                 }
             }
-            if (menupage == 1)
-            {
+            if (menupage == 1) {
                 menu_caidat();
                 gtlen = HAL_GPIO_ReadPin(GPIOA, LEN_Pin);
                 gtxuong = HAL_GPIO_ReadPin(GPIOA, XUONG_Pin);
                 gtmenu = HAL_GPIO_ReadPin(GPIOA, MENU_Pin);
-                if (gtlen == 0)
-                {
-                    if (demmenu == 0)
-                    {
+                if (gtlen == 0) {
+                    if (demmenu == 0) {
                         demmenu = 3;
                     }
-                    else if (demmenu == 1)
-                    {
+                    else if (demmenu == 1) {
                         demmenu = 0;
                     }
-                    else if (demmenu == 2)
-                    {
+                    else if (demmenu == 2) {
                         demmenu = 1;
                     }
-                    else if (demmenu == 3)
-                    {
+                    else if (demmenu == 3) {
                         demmenu = 2;
                     }
                     menu_caidat();
                     HAL_Delay(200);
                 }
-                if (gtxuong == 0)
-                {
-                    if (demmenu == 0)
-                    {
+                if (gtxuong == 0) {
+                    if (demmenu == 0) {
                         demmenu = 1;
                     }
-                    else if (demmenu == 1)
-                    {
+                    else if (demmenu == 1) {
                         demmenu = 2;
                     }
-                    else if (demmenu == 2)
-                    {
+                    else if (demmenu == 2) {
                         demmenu = 3;
                     }
-                    else if (demmenu == 3)
-                    {
+                    else if (demmenu == 3) {
                         demmenu = 0;
                     }
                     menu_caidat();
                     HAL_Delay(200);
                 }
-                if (gtmenu == 0)
-                {
+                if (gtmenu == 0) {
                     HAL_Delay(50);
-                    if (gtmenu == 0)
-                    {
+                    if (gtmenu == 0) {
                         chon_caidat();
                     }
                 }
             }
-            if (gtmenu == 1 && gtlen == 1 && gtxuong == 1)
-            {
+            if (gtmenu == 1 && gtlen == 1 && gtxuong == 1) {
                 count = count + 1;
                 HAL_Delay(20);
             }
-            if (count == 150)
-            {
+            if (count == 150) {
                 demtong = 0;
                 count = 0;
                 menupage = 0;
